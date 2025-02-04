@@ -7,7 +7,6 @@ public class ex2 {
     public static void main(String[] args) throws Exception {
         mostrarMenu();
         int opcao = scanner.nextInt();
-
         switch (opcao) {
             case 1:
                 System.out.println("Resultado da soma: "+retornaSomaDeNumeros(2));

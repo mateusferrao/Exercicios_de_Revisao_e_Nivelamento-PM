@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class ex1 {
     static Scanner scanner = new Scanner(System.in);
-
     public static void main(String[] args) {
         System.out.println("Digite largura e altura do retângulo: ");
         int largura = scanner.nextInt();

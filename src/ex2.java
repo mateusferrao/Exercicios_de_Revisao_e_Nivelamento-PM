@@ -1,9 +1,7 @@
 import java.util.Scanner;
 
 public class ex2 {
-
     static Scanner scanner = new Scanner(System.in);
-
     public static void main(String[] args) throws Exception {
         mostrarMenu();
         int opcao = scanner.nextInt();

@@ -2,12 +2,13 @@ import java.util.Scanner;
 
 public class ex2 {
     static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) throws Exception {
         mostrarMenu();
-        int opcao = scanner.nextInt();
+        int opcao = leNumero();
         switch (opcao) {
             case 1:
-                System.out.println("Resultado da soma: "+retornaSomaDeNumeros(2));
+                System.out.println("Resultado da soma: " + retornaSomaDeNumeros(2));
                 break;
             case 2:
                 System.out.print("Digite o primeiro número: ");
@@ -17,13 +18,13 @@ public class ex2 {
                 if (numero1 == numero2) {
                     System.out.println("Os números são iguais ");
                 } else {
-                    System.out.println("Maior número: "+retornaMaiorNumero(numero1, numero2));
+                    System.out.println("Maior número: " + retornaMaiorNumero(numero1, numero2));
                 }
                 break;
             case 3:
                 System.out.print("Digite a quantidade de números a serem somados: ");
                 int quantidadeDeNumeros = scanner.nextInt();
-                System.out.println("Resultado da soma: "+retornaSomaDeNumeros(quantidadeDeNumeros));
+                System.out.println("Resultado da soma: " + retornaSomaDeNumeros(quantidadeDeNumeros));
                 break;
             case 4:
                 System.out.print("Quantos números na sequência: ");
@@ -36,6 +37,11 @@ public class ex2 {
             default:
                 break;
         }
+    }
+
+    public static int leNumero() {
+        System.out.print("Digite a opção: ");
+        return scanner.nextInt();
     }
 
     public static void mostrarMenu() {

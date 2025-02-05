@@ -3,10 +3,19 @@ import java.util.Scanner;
 public class ex1 {
     static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
-        System.out.println("Digite largura e altura do retângulo: ");
-        int largura = scanner.nextInt();
-        int altura = scanner.nextInt();
+        int largura = leLargura();
+        int altura = leAltura();
         desenhaRetangulo(largura, altura);
+    }
+
+    public static int leLargura() {
+        System.out.println("Digite a largura do retângulo: ");
+        return scanner.nextInt();
+    }
+
+    public static int leAltura() {
+        System.out.println("Digite a altura do retângulo: ");
+        return scanner.nextInt();
     }
 
     public static void desenhaRetangulo(int largura, int altura) {

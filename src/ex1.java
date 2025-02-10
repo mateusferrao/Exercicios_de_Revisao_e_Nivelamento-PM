@@ -9,12 +9,12 @@ public class ex1 {
     }
 
     public static int leLargura() {
-        System.out.println("Digite a largura do retângulo: ");
+        System.out.println("Digite a largura: ");
         return scanner.nextInt();
     }
 
     public static int leAltura() {
-        System.out.println("Digite a altura do retângulo: ");
+        System.out.println("Digite a altura: ");
         return scanner.nextInt();
     }
 

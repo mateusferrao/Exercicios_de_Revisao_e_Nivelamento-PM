@@ -3,23 +3,34 @@ public class ex3 {
 	static Scanner scanner = new Scanner(System.in);
 	public static void main(String[] args) throws Exception {
 		String frase = scanner.nextLine();
-		String[] substrings = splitString(frase, 5);
-		for(String substring : substrings){
-			System.out.println(substring);
+		int caracteresPorSubstring = 5;
+		String[] substrings = separaStringsEmSubstrings(frase, caracteresPorSubstring);
+		imprimeSubstringsCriptografadas(substrings, caracteresPorSubstring);
+	}
+
+	public static void imprimeSubstringsCriptografadas(String[] substrings, int caracteresPorSubstring){
+		for(int i=0; i<caracteresPorSubstring; i++){
+			for(int j=0; j<substrings.length; j++){
+				System.out.print(substrings[j].charAt(i));
+				if (j == substrings.length - 1) System.out.print("*");
+			}
 		}
 	}
 
-	public static String[] splitString(String frase, int caracteresPorSubstring){
+	public static String[] separaStringsEmSubstrings(String frase, int caracteresPorSubstring){
 		int tamanhoDaFrase = frase.length();
 		int quatidadeDeSubstrings = (tamanhoDaFrase + caracteresPorSubstring - 1) / caracteresPorSubstring;
 		String[] substrings = new String[quatidadeDeSubstrings];
 		for (int i=0; i<quatidadeDeSubstrings; i++){
-			substrings[i] = frase.substring(i*caracteresPorSubstring, retornaMenorValor((i + 1) * caracteresPorSubstring, tamanhoDaFrase));
+			substrings[i] = frase.substring(i*caracteresPorSubstring, Math.min((i + 1) * caracteresPorSubstring, tamanhoDaFrase));
+			if (substrings[i].length() < caracteresPorSubstring){
+				substrings[i] = adionaEspacosEmBranco(substrings[i], caracteresPorSubstring);
+			}
 		}
 		return substrings;
 	}
 
-	public static int retornaMenorValor(int valor1, int valor2){
-		return Math.min(valor1, valor2);
+	public static String adionaEspacosEmBranco(String substring, int caracteresPorSubstring){
+		return substring + " ".repeat(caracteresPorSubstring - substring.length());
 	}
 }

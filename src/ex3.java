@@ -4,7 +4,7 @@ public class ex3 {
 	public static void main(String[] args) throws Exception {
 		String frase = scanner.nextLine();
 		int caracteresPorSubstring = 5;
-		String[] substrings = separaStringsEmSubstrings(frase, caracteresPorSubstring);
+		String[] substrings = separaStringsEmSubstringsERetorna(frase, caracteresPorSubstring);
 		imprimeSubstringsCriptografadas(substrings, caracteresPorSubstring);
 	}
 
@@ -17,7 +17,7 @@ public class ex3 {
 		}
 	}
 
-	public static String[] separaStringsEmSubstrings(String frase, int caracteresPorSubstring){
+	public static String[] separaStringsEmSubstringsERetorna(String frase, int caracteresPorSubstring){
 		int tamanhoDaFrase = frase.length();
 		int quatidadeDeSubstrings = (tamanhoDaFrase + caracteresPorSubstring - 1) / caracteresPorSubstring;
 		String[] substrings = new String[quatidadeDeSubstrings];

@@ -33,4 +33,8 @@ public class ex3 {
 	public static String adionaEspacosEmBranco(String substring, int caracteresPorSubstring){
 		return substring + " ".repeat(caracteresPorSubstring - substring.length());
 	}
+
+	public static void retornaMensagemOriginalAPartirDeMensagemCriptografada() {
+		
+	}
 }

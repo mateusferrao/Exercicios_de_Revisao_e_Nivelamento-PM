@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class ex2 {
     static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         mostrarMenu();
         int opcao = leNumero("Digite a opção: ");
         switch (opcao) {
@@ -12,7 +12,9 @@ public class ex2 {
             case 2 -> retornaOMaiorDeDoisNumeros();
             case 3 -> somaNumeros();
             case 4 -> contaParesDaSequencia();
+            default -> System.out.println("Opção inválida!");
         }
+        scanner.close();
     }
 
     public static int leNumero(String mensagem) {
@@ -45,7 +47,7 @@ public class ex2 {
         }
         return pares;
     }
-    
+
     public static void retornaOMaiorDeDoisNumeros() {
         String mensagem = "Os números são iguais.";
         int numero1 = leNumero("Digite o primeiro número: ");
@@ -54,12 +56,8 @@ public class ex2 {
         System.out.println(mensagem);
     }
 
-    public static float retornaMaiorNumero(float numero1, float numero2) {
-        if (numero1 > numero2) {
-            return numero1;
-        } else {
-            return numero2;
-        }
+    public static int retornaMaiorNumero(int numero1, int numero2) {
+        return Math.max(numero1, numero2);
     }
 
     public static void somaNumeros() {
@@ -67,13 +65,12 @@ public class ex2 {
         System.out.println("Resultado da soma: " + retornaSomaDeNumeros(quantidadeDeNumerosASeremSomados));
     }
 
-    public static float retornaSomaDeNumeros(int quantidadeDeNumeros) {
-        float soma = 0;
+    public static int retornaSomaDeNumeros(int quantidadeDeNumeros) {
+        int soma = 0;
         for (int i = 0; i < quantidadeDeNumeros; i++) {
-            float numero = leNumero("Digite o número " + (i + 1) + ": ");
+            int numero = leNumero("Digite o número " + (i + 1) + ": ");
             soma += numero;
         }
         return soma;
     }
-
 }

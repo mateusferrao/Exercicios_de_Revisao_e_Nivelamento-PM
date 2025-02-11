@@ -5,9 +5,8 @@ public class ex4 {
 		String frase = scanner.nextLine();
 		int caracteresPorSubstring = 5;
 		double quatidadeDeSubstrings = Math.ceil((frase.length() + caracteresPorSubstring - 1) / caracteresPorSubstring);
-		quatidadeDeSubstrings = Integer.parseInt(quatidadeDeSubstrings);
-		String[] substrings = retornaSubstrings(frase, caracteresPorSubstring, quatidadeDeSubstrings);
-		String[] substringsCriptografadas = retornaSubstringsCriptografadas(substrings, caracteresPorSubstring, quatidadeDeSubstrings+1);
+		String[] substrings = retornaSubstrings(frase, caracteresPorSubstring, (int)quatidadeDeSubstrings);
+		String[] substringsCriptografadas = retornaSubstringsCriptografadas(substrings, caracteresPorSubstring, (int)quatidadeDeSubstrings+1);
 		imprimeSubstringsCriptografadas(substringsCriptografadas);
 	}
 

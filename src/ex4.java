@@ -4,15 +4,42 @@ public class ex4 {
 	static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) throws Exception {
+		mostrarMenu();
+		int opcao = leNumero("Digite a opção: ");
+		System.out.print("Digite a frase: ");
 		String frase = scanner.nextLine();
 		int caracteresPorSubstring = 5;
 		int quatidadeDeSubstrings = (int) Math.ceil((double) frase.length() / caracteresPorSubstring);
 		String[] substrings = retornaSubstrings(frase, caracteresPorSubstring, quatidadeDeSubstrings);
-		String[] substringsCriptografadas = retornaSubstringsCriptografadas(substrings, caracteresPorSubstring,
-				quatidadeDeSubstrings);
-		imprimeArrayDeStrings(substringsCriptografadas);
-		System.out.println(retornaSubstringsCriptografadasRestauradas(substringsCriptografadas));
+		String[] substringsCriptografadas = new String[quatidadeDeSubstrings];
+		if (opcao == 1)
+			substringsCriptografadas = retornaSubstringsCriptografadas(substrings, caracteresPorSubstring,
+					quatidadeDeSubstrings);
+		if (opcao == 2) {
+			substringsCriptografadas = frase.split("\\*");
+			for (int i = 0; i < substringsCriptografadas.length; i++) {
+				substringsCriptografadas[i] += substringsCriptografadas[i] + "*";
+			}
+		}
+		switch (opcao) {
+			case 1 -> imprimeArrayDeStrings(substringsCriptografadas);
+			case 2 -> System.out.println(retornaSubstringsCriptografadasRestauradas(substringsCriptografadas));
+			default -> System.out.println("Opção inválida");
+		}
+
 		scanner.close();
+	}
+
+	public static void mostrarMenu() {
+		System.out.println("Menu: ");
+		System.out.println("1 - Criptografar mensagem");
+		System.out.println("2 - Restaurar mensagem criptografada");
+	}
+
+	public static int leNumero(String mensagem) {
+		System.out.print(mensagem);
+		int numero = scanner.nextInt();
+		return numero;
 	}
 
 	public static String[] retornaSubstringsCriptografadas(String[] substrings, int caracteresPorSubstring,

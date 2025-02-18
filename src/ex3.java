@@ -51,8 +51,8 @@ public class ex3 {
         return converteValorParaEscalaZeroACem(valor, 20);
     }
 
-    public static double converteValorParaEscalaZeroACem(double valor, int novaEscala){
-        return (valor / 20) * 100;
+    public static double converteValorParaEscalaZeroACem(double valor, double novaEscala){
+        return (valor / novaEscala) * 100;
     }
 
     public static double calcularNotaFinal(double[] notasExercicios, double[] notasProvas, double notaTrabalho) {

@@ -47,8 +47,13 @@ public class ex5 {
         return textoOriginal.toString().trim(); 
     }
 
+    public static String leTexto(String mensagem) {
+        System.out.println(mensagem);
+        return scanner.nextLine(); 
+    }
+
     public static void main(String[] args) {
-        String criptografada = "mgea*eec *nmr *s e *ast *";
+        String criptografada = leTexto("Digite a mensagem criptografada: ");
         String textoOriginal = descriptografar(criptografada);
         System.out.println("Texto original: " + textoOriginal);
     }

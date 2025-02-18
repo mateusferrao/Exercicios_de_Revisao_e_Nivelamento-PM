@@ -1,82 +1,55 @@
 import java.util.Scanner;
 
 public class ex4 {
-	static Scanner scanner = new Scanner(System.in);
+    static Scanner scanner = new Scanner(System.in);
 
-	public static void main(String[] args) throws Exception {
-		String frase = leFrase("Digite a frase: ");
-		int caracteresPorSubstring = 5;
-		int quatidadeDeSubstrings = calculaQuantidadeDeSubstrings(caracteresPorSubstring, frase);
-		String[] substrings = retornaSubstrings(frase, caracteresPorSubstring, quatidadeDeSubstrings);
-		String[] substringsCriptografadas = retornaSubstringsCriptografadas(substrings, caracteresPorSubstring, quatidadeDeSubstrings);
-		imprimeArrayDeStrings(substringsCriptografadas);
-		scanner.close();
-	}
+    public static String criptografar(String texto) {
+        StringBuilder[] blocos = dividirEmBlocos(texto, 5);
+        return construirCriptografia(blocos); 
+    }
 
-	public static int calculaQuantidadeDeSubstrings(int caracteresPorSubstring, String frase){
-		return (int) Math.ceil((double) frase.length() / caracteresPorSubstring);
-	}
+    private static StringBuilder[] dividirEmBlocos(String texto, int tamanhoBloco) {
+        int numBlocos = (int) Math.ceil((double) texto.length() / tamanhoBloco);
+        StringBuilder[] blocos = new StringBuilder[numBlocos];
 
-	public static String leFrase(String mensagem){
-		System.out.print(mensagem);
-		return scanner.nextLine();
-	}
+        for (int i = 0; i < numBlocos; i++) {
+            int inicio = i * tamanhoBloco;
+            int fim = Math.min(inicio + tamanhoBloco, texto.length());
+            blocos[i] = new StringBuilder(texto.substring(inicio, fim));
+        }
 
-	public static int leNumero(String mensagem) {
-		System.out.print(mensagem);
-		int numero = scanner.nextInt();
-		return numero;
-	}
+        return blocos;
+    }
 
-	public static String[] retornaSubstringsCriptografadas(String[] substrings, int caracteresPorSubstring,
-			int quatidadeDeSubstrings) {
-		String substring = "";
-		int k = 0;
-		String[] substringsCriptografadas = new String[caracteresPorSubstring];
-		for (int i = 0; i < caracteresPorSubstring; i++) {
-			for (int j = 0; j < substrings.length; j++) {
-				if (i < substrings[j].length()) {
-					substring += substrings[j].charAt(i);
-				} else {
-					substring += " ";
-				}
-				if (j == substrings.length - 1) {
-					substring += "*";
-					substringsCriptografadas[k] = substring;
-					k++;
-					substring = "";
-				}
-			}
-		}
-		return substringsCriptografadas;
-	}
+    private static String construirCriptografia(StringBuilder[] blocos) {
+        StringBuilder criptografada = new StringBuilder();
 
-	public static void imprimeArrayDeStrings(String[] arrayDeStrings) {
-		for (String string : arrayDeStrings) {
-			System.out.println(string);
-		}
-	}
+        for (int coluna = 0; coluna < 5; coluna++) {
+            for (StringBuilder bloco : blocos) {
+                if (coluna < bloco.length()) {
+                    criptografada.append(bloco.charAt(coluna));
+                } else {
+                    criptografada.append(' ');
+                }
+            }
+            criptografada.append('*');
+        }
 
-	public static String[] retornaSubstrings(String frase, int caracteresPorSubstring, int quatidadeDeSubstrings) {
-		String[] substrings = separaStringEmSubStrings(frase, caracteresPorSubstring, quatidadeDeSubstrings);
-		return substrings;
-	}
+        if (criptografada.length() > 0) {
+            criptografada.deleteCharAt(criptografada.length() - 1);
+        }
 
-	public static String[] separaStringEmSubStrings(String frase, int caracteresPorSubstring,
-			int quatidadeDeSubstrings) {
-		int tamanhoDaFrase = frase.length();
-		String[] substrings = new String[quatidadeDeSubstrings];
-		for (int i = 0; i < quatidadeDeSubstrings; i++) {
-			substrings[i] = frase.substring(i * caracteresPorSubstring,
-					Math.min((i + 1) * caracteresPorSubstring, tamanhoDaFrase));
-			if (substrings[i].length() < caracteresPorSubstring) {
-				substrings[i] = adionaEspacosEmBranco(substrings[i], caracteresPorSubstring);
-			}
-		}
-		return substrings;
-	}
+        return criptografada.toString();
+    }
 
-	public static String adionaEspacosEmBranco(String substring, int caracteresPorSubstring) {
-		return substring + " ".repeat(caracteresPorSubstring - substring.length());
-	}
+    public static String leTexto(String mensagem) {
+        System.out.println(mensagem);
+        return scanner.nextLine(); 
+    }
+
+    public static void main(String[] args) {
+        String texto = leTexto("Digite a frase: ");
+        String criptografada = criptografar(texto);
+        System.out.println("Texto criptografado: " + criptografada);
+    }
 }

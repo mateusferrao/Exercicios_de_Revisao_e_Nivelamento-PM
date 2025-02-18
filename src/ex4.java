@@ -4,18 +4,23 @@ public class ex4 {
 	static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) throws Exception {
-		System.out.print("Digite a frase: ");
-		String frase = scanner.nextLine();
+		String frase = leFrase("Digite a frase: ");
 		int caracteresPorSubstring = 5;
-		int quatidadeDeSubstrings = (int) Math.ceil((double) frase.length() / caracteresPorSubstring);
+		int quatidadeDeSubstrings = calculaQuantidadeDeSubstrings(caracteresPorSubstring, frase);
 		String[] substrings = retornaSubstrings(frase, caracteresPorSubstring, quatidadeDeSubstrings);
-		String[] substringsCriptografadas = retornaSubstringsCriptografadas(substrings, caracteresPorSubstring,
-		quatidadeDeSubstrings);
+		String[] substringsCriptografadas = retornaSubstringsCriptografadas(substrings, caracteresPorSubstring, quatidadeDeSubstrings);
 		imprimeArrayDeStrings(substringsCriptografadas);
-
 		scanner.close();
 	}
 
+	public static int calculaQuantidadeDeSubstrings(int caracteresPorSubstring, String frase){
+		return (int) Math.ceil((double) frase.length() / caracteresPorSubstring);
+	}
+
+	public static String leFrase(String mensagem){
+		System.out.print(mensagem);
+		return scanner.nextLine();
+	}
 
 	public static int leNumero(String mensagem) {
 		System.out.print(mensagem);
